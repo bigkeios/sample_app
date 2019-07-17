@@ -10,6 +10,18 @@
   </head>
 
   <body>
-    <%= yield %>
+    <header>
+      <nav class="navbar navbar-light bg-light">
+        <a href="#" class="navbar-brand">Sample</a>
+        <ul class="navbar-nav navbar-right">
+          <li class="nav-item">Home</li>
+          <li class="nav-item">Help</li>
+          <li class="nav-item">About</li>
+        </ul>
+      </nav>
+    </header>
+    <div class="container">
+      <%= yield %>
+    </div>
   </body>
 </html>
