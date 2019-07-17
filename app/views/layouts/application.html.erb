@@ -10,16 +10,14 @@
   </head>
 
   <body>
-    <header>
-      <nav class="navbar navbar-light bg-light">
-        <a href="#" class="navbar-brand">Sample</a>
-        <ul class="navbar-nav navbar-right">
-          <li class="nav-item">Home</li>
-          <li class="nav-item">Help</li>
-          <li class="nav-item">About</li>
-        </ul>
-      </nav>
-    </header>
+    <nav class="navbar navbar-expand-lg navbar-light">
+      <%= link_to("sample app", '#', id: 'logo')  %>
+      <ul class="nav navbar-nav navbar-right">
+        <li class="nav-item"> <%= link_to("Home", "#", class:'nav-link')%></li>
+        <li class="nav-item"><%= link_to("Help", "#", class:'nav-link')%></li>
+        <li class="nav-item"><%= link_to("About", "#", class:'nav-link')%></li>
+      </ul>
+    </nav>
     <div class="container">
       <%= yield %>
     </div>
