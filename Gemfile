@@ -58,4 +58,4 @@ gem 'autoprefixer-rails'
 # JQuery
 gem 'jquery-rails'
 # Bcrypt
-gem 'bcrypt'
+gem 'bcrypt', '3.1.12'
