@@ -96,6 +96,35 @@ p
     clear: both;
     width: 100%;
     float: left;
+    margin-top: 50px;
     @include box_sizing();
 }
+
+// show user view
+
+aside
+{
+    section.user_info
+    {
+        margin-top: 50px;
+    }
+    section
+    {
+        padding: 10px 0;
+        margin: 10px 0;
+        h1
+        {
+            font-size: 1.4 em;
+            text-align: left;
+        }
+    }
+}
+
+.gravatar
+{
+    float: left;
+    margin-right: 10px;
+}
+
+
 
