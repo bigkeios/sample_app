@@ -57,3 +57,5 @@ gem 'bootstrap', '~> 4.3.0'
 gem 'autoprefixer-rails'
 # JQuery
 gem 'jquery-rails'
+# Bcrypt
+gem 'bcrypt'
