@@ -1,4 +1,8 @@
 <li>
     <%= gravatar_for user, size: 50%> 
     <%= link_to user.name, user_url(user)%>
+    <%# check if the current user is the admin or the user they are deleting %>
+    <% if current_user.admin? && !correct_user?(user) %>
+        <%= link_to "Delete", user_url(user), method: "delete", data: {confirm: "Are you sure you want to delete this user?"}, class:'delete-link' %>
+    <% end %>
 </li>
