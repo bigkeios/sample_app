@@ -23,9 +23,12 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
-      log_in @user
-      flash[:success] = "Welcome to the sample app"
-      redirect_to user_url(@user)
+      # log_in @user
+      # flash[:success] = "Welcome to the sample app"
+      # redirect_to user_url(@user)
+      @user.send_activation_email
+      flash[:info] = "Please check your mail box for activation email"
+      redirect_to root_url
     else
       render :new
     end
@@ -33,7 +36,17 @@ class UsersController < ApplicationController
 
   # GET users/1/edit
   def edit
-    @user = User.find_by(id: params[:id])
+    user = User.find_by(email: params[:email])
+    if user && user.authenticated?(:activation, params[:id]) && !user.activated?
+      # get id from params bc the token is passed on the url as id 
+      # check in views/user_mailer/account_activation.text.erb
+      user.activate
+      flash[:success] = "Account activated"
+      redirect_to user_url(user)
+    else
+      flash[:danger] = "Invalid activation link"
+      redirect_to root_url
+    end
   end
 
   #PATCH users/1/edit
