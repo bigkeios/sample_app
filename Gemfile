@@ -59,3 +59,8 @@ gem 'autoprefixer-rails'
 gem 'jquery-rails'
 # Bcrypt
 gem 'bcrypt', '3.1.12'
+# Faker
+gem 'faker'
+# will-paginate
+gem 'will_paginate'
+gem 'will_paginate-bootstrap4'

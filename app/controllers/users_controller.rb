@@ -1,6 +1,12 @@
 class UsersController < ApplicationController
-  before_action :logged_in_user, only:[:edit, :update]
+  before_action :logged_in_user, only:[:index, :edit, :update]
   before_action :correct_user, only:[:edit, :update]
+
+  #GET users
+  def index
+    @users = User.paginate(page: params[:page])
+    # using paginate of will-paginate to make it work. page is auto passed by will-paginate
+  end
 
   # GET users/new
   def new

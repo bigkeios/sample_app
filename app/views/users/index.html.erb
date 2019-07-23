@@ -1,0 +1,14 @@
+<% provide(:title, "All users") %>
+<h1>All users</h1>
+
+<%= will_paginate @users, renderer: WillPaginate::ActionView::BootstrapLinkRenderer%>
+<%# make sure the @users is taken with paginate method of will-paginate so that it will work %>
+<%# <ul class="users"> %>
+    <%# <% @users.each do |user| %>
+    <%# <% render user%> 
+    <%# <% end %>
+<%# </ul> %>
+<ul class="users">
+    <%= render @users %>
+</ul>
+<%= will_paginate %>
