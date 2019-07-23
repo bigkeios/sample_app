@@ -24,6 +24,10 @@ module SessionsHelper
         end
     end
 
+    def correct_user?(user)
+        user == current_user
+    end
+
     def logged_in?
         !current_user.nil?
     end
@@ -39,4 +43,14 @@ module SessionsHelper
         session.delete(:user_id) #put this behind to preserve @current_user to use in forget or else it will goes to the elsif and login again
         @current_user = nil
     end
+
+    def redirect_back_or_to(default)
+        redirect_to (session[:fowarding_url] || default)
+        session.delete(:fowarding_url)
+    end
+
+    def store_location
+        session[:fowarding_url] = request.original_url  if request.get?
+    end
+    
 end

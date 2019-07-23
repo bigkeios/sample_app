@@ -8,7 +8,7 @@ class SessionsController < ApplicationController
       # Log the user in if the password is correct
       log_in user
       params[:session][:remember_me] == '1' ? remember(user) : forget(user)
-      redirect_to user_url(user)
+      redirect_back_or_to user_url(user)
     else
       # Show error
       flash.now[:danger] = 'Invalid login information'
