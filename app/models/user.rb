@@ -64,7 +64,8 @@ class User < ApplicationRecord
     def create_activation_digest
         self.activation_token = User.new_token
         self.activation_digest = User.digest(activation_token)
-      end
+        # the digest will be saved when the user record is created
+    end
     # downcase email before saving it to db
     def downcase_email
     self.email = email.downcase
