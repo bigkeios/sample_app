@@ -1,5 +1,5 @@
 class User < ApplicationRecord
-    attr_accessor :remember_token, :activation_token
+    attr_accessor :remember_token, :activation_token, :pw_reset_token
     before_save :downcase_email
     before_create :create_activation_digest
     validates :name, presence: true, length: {maximum: 50}
@@ -8,6 +8,7 @@ class User < ApplicationRecord
     has_secure_password
     validates :password, presence: true, length: { minimum: 6 }, allow_blank: true
     # allow blank is for updating user and it does not make the password being saved as '' if password field is blank
+    # but allows blank for a password reset
 
     class << self
         # return a hash digest on a given string
@@ -57,6 +58,20 @@ class User < ApplicationRecord
 
     def send_activation_email
         UserMailer.account_activation(@user).deliver_now
+    end
+
+    def create_pw_reset_digest
+        self.pw_reset_token = User.new_token
+        update_attribute(:pw_reset_digest, User.digest(pw_reset_token))
+        update_attribute(:pw_reset_at, Time.zone.now)
+    end
+
+    def send_pw_reset_email
+        UserMailer.password_reset(self).deliver_now
+    end
+
+    def pw_reset_expired?
+        pw_reset_at_was < 2.hours.ago 
     end
 
     private
