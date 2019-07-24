@@ -37,7 +37,7 @@ class UsersController < ApplicationController
 
   # GET users/1/edit
   def edit
-    user = User.find_by(id: params[:id])
+    @user = User.find_by(id: params[:id])
   end
 
   #PATCH users/1/edit
