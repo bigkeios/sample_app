@@ -60,6 +60,22 @@ class UsersController < ApplicationController
     flash[:success] = "Delete user successfully"
     redirect_to users_url
   end
+  # GET /users/1/following
+  def following
+    @title = "Following"
+    @user = User.find_by(id: params[:id])
+    @users = @user.following.paginate(page: params[:page])
+    render 'show_follow'
+  end
+
+  # GET /users/1/followers
+  def followers
+    @title = "Followers"
+    @user = User.find_by(id: params[:id])
+    @users = @user.followers.paginate(page: params[:page])
+    render 'show_follow'
+  end
+
 
   private
     def user_params
