@@ -4,4 +4,12 @@ class ApplicationController < ActionController::Base
     def hello
         render html: "Hello world!"
     end
+    # method to confirm a logged in user
+    def logged_in_user
+        if !logged_in?
+          store_location
+          flash[:danger] = 'Please log in to continue'
+          redirect_to login_url
+        end
+    end
 end

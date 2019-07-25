@@ -65,16 +65,7 @@ class UsersController < ApplicationController
     def user_params
       params.require(:user).permit(:name, :email, :password, :password_confirmation)
     end
-    # before filters
-
-    # method to confirm a logged in user
-    def logged_in_user
-      if !logged_in?
-        store_location
-        flash[:danger] = 'Please log in to continue'
-        redirect_to login_url
-      end
-    end
+    # before filters  
 
     # method to confirm the correct user is editing
     def correct_user

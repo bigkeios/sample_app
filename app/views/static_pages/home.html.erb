@@ -1,13 +1,30 @@
 <% provide(:title, "Home")%>
-<div class="center jumbotron">
-    <h1>Sample App</h1>
-    <p>
-        This is the home page for the
-        <a href="http://www.railstutorial.org/">Ruby on Rails Tutorial</a>
-        sample application.
-    </p>
-    <%= link_to("Sign up", signup_path, class: 'btn btn-lg btn-primary center')%>
-    <br> <br>
-    <%= link_to image_tag("rails.png", alt: "Rails logo"),'/app/assets/images' %>
-</div>
-</body>
+<% if logged_in? %>
+    <div class="row">
+        <aside class="col-md-4">
+            <section class="user-info">
+                <%= render 'shared/user_info'%>
+            </section>
+            <section class="micropost_form">
+                <%= render 'shared/micropost_form' %>
+            </section>
+        </aside>
+         <div class="col-md-8 user-posts">
+            <h1> Micropost feed </h1>
+            <%= render 'shared/feed'%>
+        </div>
+    </div>
+<% else %>
+    <div class="center jumbotron">
+        <h1>Sample App</h1>
+        <p>
+            This is the home page for the
+            <a href="http://www.railstutorial.org/">Ruby on Rails Tutorial</a>
+            sample application.
+        </p>
+        <%= link_to("Sign up", signup_path, class: 'btn btn-lg btn-primary center')%>
+        <br> <br>
+        <%= link_to image_tag("rails.png", alt: "Rails logo"),'/app/assets/images' %>
+    </div>
+    </body>
+<% end %>

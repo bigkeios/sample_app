@@ -74,6 +74,10 @@ class User < ApplicationRecord
     def pw_reset_expired?
         pw_reset_at_was < 2.hours.ago 
     end
+    # find all posts by a user
+    # def feed
+    #     Micropost.where("user_id = ?", id)
+    # end
 
     private
     # create token and its digest to save in db
