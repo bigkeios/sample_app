@@ -64,3 +64,6 @@ gem 'faker'
 # will-paginate
 gem 'will_paginate'
 gem 'will_paginate-bootstrap4'
+gem 'carrierwave'
+gem 'mini_magick'
+gem 'cloudinary'
