@@ -7,8 +7,9 @@ class Micropost < ApplicationRecord
   validate :picture_size
 
   # find all posts by a user
-  def self.feed(user_id)
-    self.where("user_id = ?", user_id)
+  def self.feed(user)
+    following_ids = "SELECT followed_id FROM relationships WHERE follower_id=#{user.id}"
+    self.where("user_id IN (#{following_ids}) OR user_id = :user_id", user_id: user.id)
   end
 
   private

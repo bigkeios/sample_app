@@ -4,7 +4,7 @@ class StaticPagesController < ApplicationController
     @micropost = current_user.microposts.build if logged_in?
     # lists of posts by the current user
     if logged_in?
-      @feed_items = Micropost.feed(current_user.id).paginate(page: params[:page])
+      @feed_items = Micropost.feed(current_user).paginate(page: params[:page])
     else
       @feed_items = []
     end
