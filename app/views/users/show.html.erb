@@ -2,13 +2,23 @@
 <div class="container">
     <div class="row">
         <aside class="col-md-4">
-            <section class="user_info">
+            <section class="user-info">
                 <h1>
                     <%= gravatar_for @user%>
                     <%= @user.name%>
                 </h1>
             </section>
         </aside>
+        <div class="col-md-8 user-posts">
+            <% if @user.microposts.any? %>
+                <h3>Posts (<%= @user.microposts.count %>) </h3>
+                <% will_paginate @microposts, renderer: WillPaginate::ActionView::BootstrapLinkRenderer%>
+                <ol class="microposts">
+                    <%= render @microposts %>
+                </ol>
+                 <% will_paginate @microposts %>
+            <% end %>
+        </div>
     </div>
 </div>
 
